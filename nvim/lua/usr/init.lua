@@ -19,7 +19,13 @@ require("usr.toggleterm")
 require("colorizer").setup({ "css", "javascript", "lua", html = { mode = "foreground" } })
 require("nvim-surround").setup()
 require("gitsigns").setup({ signcolumn = false, numhl = true })
-require("leap").add_default_mappings()
+
+-- require("leap").add_default_mappings()
+local leap = require('leap')
+-- 普通模式、可视模式、操作模式都支持
+vim.keymap.set({'n', 'x', 'o'}, 's', function() leap.leap() end, {desc = "Leap forward"})
+vim.keymap.set({'n', 'x', 'o'}, 'S', function() leap.leap({backward = true}) end, {desc = "Leap backward"})
+
 require("flit").setup({})
 require("nvim-autopairs").setup()
 require("fidget").setup()
